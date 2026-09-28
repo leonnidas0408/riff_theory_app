@@ -1,0 +1,74 @@
+{
+  "dependencies": {
+    "@capacitor/android": "^8.5.2",
+    "@capacitor/core": "^8.5.2",
+    "@vitejs/plugin-react": "^6.0.5",
+    "react": "^19.2.8",
+    "react-device-detect": "^2.2.3",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.5",
+    "electron": "^44.4.5",
+    "electron-builder": "^26.15.3",
+    "pdf-parse": "^1.1.1",
+    "rolldown": "^1.2.2",
+    "vite": "^8.2.0",
+    "wait-on": "^9.1.0",
+    "@capacitor/cli": "^8.5.2"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "build:knowledge": "node scripts/build-knowledge.mjs",
+    "build:app": "vite build --mode app",
+    "android:sync": "npm run build:app && cap sync android",
+    "android:open": "npm run android:sync && cap open android",
+    "android:apk": "npm run android:sync && cd android && ./gradlew assembleDebug",
+    "android:apk:release": "npm run android:sync && cd android && ./gradlew assembleRelease",
+    "electron:dev": "concurrently -k \"vite\" \"wait-on http://localhost:5173 && electron . --dev\"",
+    "electron:start": "npm run build:app && electron .",
+    "electron:build": "npm run build:app && electron-builder --win",
+    "electron:build:dir": "npm run build:app && electron-builder --win --dir"
+  },
+  "name": "rifftheory-app",
+  "version": "1.0.0",
+  "description": "Riff Theory - escalas, acordes e braço de guitarra (Web, Android APK e Windows .exe)",
+  "private": true,
+  "main": "electron/main.cjs",
+  "build": {
+    "appId": "com.rifftheory.app",
+    "productName": "Riff Theory",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "artifactName": "RiffTheory-${version}-${target}.${ext}"
+  }
+}

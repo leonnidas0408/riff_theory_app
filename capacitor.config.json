@@ -1,0 +1,9 @@
+{
+  "appId": "com.rifftheory.app",
+  "appName": "Riff Theory",
+  "webDir": "dist",
+  "backgroundColor": "#0D0D0D",
+  "android": {
+    "allowMixedContent": false
+  }
+}

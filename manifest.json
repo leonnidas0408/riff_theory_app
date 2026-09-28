@@ -1,0 +1,14 @@
+{
+  "name": "Riff Theory",
+  "short_name": "Riff Theory",
+  "description": "Escalas, acordes e braço de guitarra",
+  "start_url": "/rifftheory/index.html",
+  "scope": "/rifftheory/",
+  "display": "standalone",
+  "background_color": "#0D0D0D",
+  "theme_color": "#0D0D0D",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "icon.jpg", "sizes": "1254x1254", "type": "image/jpg" }
+  ]
+}

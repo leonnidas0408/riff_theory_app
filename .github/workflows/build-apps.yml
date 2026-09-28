@@ -1,0 +1,65 @@
+name: Build APK e .exe
+
+# Roda manualmente (Actions > Build APK e .exe > Run workflow) ou ao criar uma tag "v*".
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+
+env:
+  # Configure em Settings > Secrets and variables > Actions > Variables:
+  #   VITE_API_BASE = https://SEU-PROJETO.vercel.app
+  VITE_API_BASE: ${{ vars.VITE_API_BASE }}
+
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: android-actions/setup-android@v3
+      - run: npm ci
+      - run: npm run android:apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: RiffTheory-android-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run electron:build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: RiffTheory-windows-exe
+          path: |
+            release/*.exe
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [android, windows]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            artifacts/**/*.apk
+            artifacts/**/*.exe

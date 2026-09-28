@@ -1,0 +1,20 @@
+{
+    "ionico": "Pop, rock clássico",
+    "dorico": "Funk, jazz, rock",
+    "frigio": "Metal, flamenco",
+    "lidio": "Rock progressivo",
+    "mixolidio": "Blues, rock clássico",
+    "eolio": "Rock, metal, baladas",
+    "locrio": "Jazz tenso, metal",
+    "maior": "Pop, folk, clássico",
+    "menor": "Rock, baladas",
+    "menor_harmonica": "Metal neoclássico",
+    "menor_melodica": "Jazz, erudito",
+    "pentatonica_maior": "Country, pop",
+    "pentatonica_menor": "Rock, blues, solos",
+    "blues": "Blues, rock, soul",
+    "tons_inteiros": "Jazz experimental",
+    "cromatica": "Jazz moderno",
+    "diminuta": "Suspense, jazz",
+    "aumentada": "Jazz experimental"
+}

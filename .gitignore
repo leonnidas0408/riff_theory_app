@@ -1,0 +1,21 @@
+node_modules
+dist
+release
+.env
+.env.app
+.DS_Store
+*.log
+
+# Android (arquivos gerados pelo build)
+android/.gradle
+android/build
+android/app/build
+android/app/release
+android/local.properties
+android/capacitor-cordova-android-plugins
+android/app/src/main/assets/public
+android/app/src/main/assets/capacitor.config.json
+android/app/src/main/assets/capacitor.plugins.json
+android/app/src/main/res/xml/config.xml
+*.keystore
+*.jks
