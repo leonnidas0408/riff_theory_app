@@ -2,20 +2,21 @@
   "dependencies": {
     "@capacitor/android": "^8.5.2",
     "@capacitor/core": "^8.5.2",
+    "@supabase/supabase-js": "^2.118.0",
     "@vitejs/plugin-react": "^6.0.5",
     "react": "^19.2.8",
     "react-device-detect": "^2.2.3",
     "react-dom": "^19.2.8"
   },
   "devDependencies": {
+    "@capacitor/cli": "^8.5.2",
     "concurrently": "^10.0.5",
     "electron": "^44.4.5",
     "electron-builder": "^26.15.3",
     "pdf-parse": "^1.1.1",
     "rolldown": "^1.2.2",
     "vite": "^8.2.0",
-    "wait-on": "^9.1.0",
-    "@capacitor/cli": "^8.5.2"
+    "wait-on": "^9.1.0"
   },
   "scripts": {
     "dev": "vite",

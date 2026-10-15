@@ -1,0 +1,2 @@
+[functions.register-anonymous-access]
+verify_jwt = false

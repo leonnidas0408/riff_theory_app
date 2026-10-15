@@ -13,6 +13,7 @@ import ChatbotTab from "./components/ChatbotTab";
 import NavbarAdapter from "./components/NavbarAdapter";
 
 import { iniciarRastreioDeUso } from "./utils/usageStats";
+import { iniciarMonitoramentoDeAcesso } from "./utils/accessMonitor";
 
 export default function App() {
     const [page, setPage] = useState("Início");
@@ -20,8 +21,12 @@ export default function App() {
     useEffect(() => {
         const pararRastreio =
             iniciarRastreioDeUso();
+        const pararMonitoramento = iniciarMonitoramentoDeAcesso();
 
-        return pararRastreio;
+        return () => {
+            pararRastreio();
+            pararMonitoramento();
+        };
     }, []);
 
     const pageData = {

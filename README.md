@@ -73,3 +73,22 @@ Os arquivos aparecem em *Artifacts* (ou na aba *Releases*, se você criar uma ta
 - Links de cifras abrem no navegador do sistema.
 - Dados de uso/"últimos acessos" ficam no `localStorage` de cada instalação (não sincronizam entre aparelhos).
 - Depois de mudar o código web, `npm run android:sync` recopia o build para o projeto Android.
+
+## Painel de acessos e proteção antiabuso
+
+O painel fica fora da navegação pública em `/admin/acessos` e usa o login Google do Supabase. As métricas contam navegadores pseudônimos; não armazenam IP, caminho de página ou user-agent.
+
+1. Configure `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` e `VITE_TURNSTILE_SITE_KEY` na Vercel (Production; Preview separadamente, se necessário).
+2. Crie no Cloudflare Turnstile um widget para `rifftheory.vercel.app`.
+3. No Supabase, aplique as seis migrações em `supabase/migrations/`, nessa ordem (a primeira usa o prefixo `20261014000000` para que a ordenação automática do Supabase seja segura).
+4. Em **Edge Functions → Secrets**, salve o segredo com o nome `TURNSTILE_SECRET_KEY`. Não o coloque no código ou no navegador.
+5. Implante `supabase/functions/register-anonymous-access` usando `supabase/config.toml`; a função é pública (`verify_jwt = false`), mas falha fechada sem as chaves e valida Turnstile antes de gravar.
+6. Cadastre administradores pelo SQL Editor do projeto:
+
+```sql
+insert into public.access_monitor_admins (email)
+select lower(trim('SEU_EMAIL_GOOGLE'))
+on conflict (email) do update set active = true;
+```
+
+Para revogar o acesso, use `update public.access_monitor_admins set active = false where email = lower(trim('EMAIL'));`.

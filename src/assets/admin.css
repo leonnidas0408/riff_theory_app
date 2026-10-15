@@ -1,0 +1,25 @@
+:root { color-scheme: dark; }
+body:has(.admin-page) { margin: 0; background: #0b0d10; color: #f0f2f4; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+.admin-page { max-width: 1180px; margin: 0 auto; padding: 48px 24px 72px; }
+.admin-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: 34px; }
+.admin-eyebrow { color: #e4a84d; font-size: 12px; font-weight: 700; letter-spacing: .14em; }
+.admin-page h1 { margin: 8px 0 8px; font-size: clamp(28px, 5vw, 46px); letter-spacing: -.04em; }
+.admin-page p { color: #9da5ae; line-height: 1.6; }
+.admin-button { border: 0; border-radius: 8px; padding: 12px 17px; background: #e4a84d; color: #19130b; font-weight: 800; cursor: pointer; }
+.admin-button.secondary { background: #20252b; color: #f0f2f4; border: 1px solid #343b44; }
+.admin-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 18px; }
+.admin-cards article, .admin-panel { border: 1px solid #252c34; border-radius: 12px; background: #12161b; }
+.admin-cards article { padding: 19px; }
+.admin-cards span, .admin-panel-title span { color: #8d97a3; font-size: 13px; }
+.admin-cards strong { display: block; margin-top: 11px; font-size: 30px; }
+.admin-panel { padding: 20px; margin-top: 18px; overflow: hidden; }
+.admin-panel-title { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 14px; }
+.admin-panel h2 { margin: 0; font-size: 18px; }
+.admin-panel select { background: #1a2026; color: #f0f2f4; border: 1px solid #37404a; border-radius: 7px; padding: 9px 11px; }
+.admin-table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { text-align: left; padding: 13px 10px; border-bottom: 1px solid #252c34; white-space: nowrap; }
+th { color: #8d97a3; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; }
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: #b9c3ce; }
+.admin-error { margin: 18px 0; padding: 14px; border: 1px solid #763c3c; border-radius: 8px; color: #ffb3b3; background: #281616; }
+@media (max-width: 760px) { .admin-page { padding: 28px 16px; } .admin-header { flex-direction: column; } .admin-cards { grid-template-columns: repeat(2, 1fr); } .admin-cards strong { font-size: 23px; } }
